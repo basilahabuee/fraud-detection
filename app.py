@@ -1,14 +1,13 @@
-import streamlit as st
-import numpy as np
+import xgboost as xgb
 import joblib
+import numpy as np
 
-# Load trained model
+# Load the trained model
 model = joblib.load("fraud_detection_model.pkl")
 
-st.title("Credit Card Fraud Detector")
-input_data = st.text_input("Enter transaction details (comma-separated)")
+# Create a test input with the correct number of features
+test_input = np.random.rand(1, model.n_features_in_)  # Generate random values
 
-if st.button("Predict"):
-    data = np.array(input_data.split(",")).reshape(1, -1)
-    prediction = model.predict(data)
-    st.write("Fraudulent Transaction" if prediction == 1 else "Legitimate Transaction")
+# Try predicting
+prediction = model.predict(test_input)
+print("Test Prediction:", prediction)
