@@ -1,3 +1,5 @@
+import warnings
+warnings.filterwarnings("ignore")
 import xgboost as xgb
 import joblib
 import numpy as np
